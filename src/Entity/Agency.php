@@ -26,9 +26,13 @@ class Agency
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'agency')]
     private $users;
 
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'agency')]
+    private $projects;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,6 +74,33 @@ class Agency
     {
         if ($this->users->removeElement($user)) {
             $user->removeAgency($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): self
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->addAgency($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            $project->removeAgency($this);
         }
 
         return $this;

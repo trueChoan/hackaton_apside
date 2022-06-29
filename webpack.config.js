@@ -73,18 +73,6 @@ Encore
 
 const fullConfig = Encore.getWebpackConfig();
 fullConfig.devServer = {
-<<<<<<< HEAD
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
-  },
-  watchFiles: {
-    paths: ["templates/**/*.html.twig"],
-  },
-}
-module.exports = fullConfig
-=======
 	headers: {
 		"Access-Control-Allow-Origin": "*",
 		"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -96,4 +84,3 @@ module.exports = fullConfig
 	},
 };
 module.exports = fullConfig;
->>>>>>> d605b2f3f025176a1f5c246147af920a381112f8

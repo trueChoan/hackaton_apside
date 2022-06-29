@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Header = () => {
-  return (
-    <div>Header</div>
-  )
-}
+	return <aside id="Header">Header</aside>;
+};
 
-export default Header
+export default Header;

@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./pages/App";
 
+import "./Main.scss";
+
 function Main() {
 	return (
 		<Router>

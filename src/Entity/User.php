@@ -45,15 +45,15 @@ class User
     #[Groups('get')]
     private $avatar;
 
-    #[ORM\ManyToOne(targetEntity: JobPosition::class, inversedBy: 'users', fetch: "EAGER")]
+    #[ORM\ManyToOne(targetEntity: JobPosition::class, inversedBy: 'users')]
 
     private $jobPosition;
 
-    #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'users',  fetch: "EAGER")]
+    #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'users')]
 
     private $agency;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'user',  fetch: "EAGER")]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'user')]
     private $projects;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]

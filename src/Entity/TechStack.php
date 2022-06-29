@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TechStackRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: TechStackRepository::class)]
 #[ApiResource(
@@ -16,9 +18,13 @@ class TechStack
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('get')]
+
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups('get')]
+
     private $techno;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'techStack')]

@@ -13,7 +13,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: AgencyRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => 'get'],
-    formats: ['json']
+    formats: ['json'],
+    collectionOperations: ['get', 'post'],
+    itemOperations: ['get']
 )]
 class Agency
 {

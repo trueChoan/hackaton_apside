@@ -57,7 +57,7 @@ Encore
   })
 
   // enables Sass/SCSS support
-  //.enableSassLoader()
+  .enableSassLoader()
 
   // uncomment if you use TypeScript
   //.enableTypeScriptLoader()
@@ -76,8 +76,7 @@ fullConfig.devServer = {
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-    "Access-Control-Allow-Headers":
-      "X-Requested-With, content-type, Authorization",
+    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
   },
   watchFiles: {
     paths: ["templates/**/*.html.twig"],

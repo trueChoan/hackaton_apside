@@ -5,13 +5,13 @@ import Card from "./Card";
 const TableCards = () => {
 	return (
 		<section id="TableCards">
-			<article>
+			<article className="bandeau">
 				<span>Order by</span>
-				<span>search results</span>
+				<span>Search results : 50</span>
 				<span>1 | 2 | 3 | ...</span>
 			</article>
-			<article>
-				<Card />
+			<article className="cards-container">
+				<Card mission="orange" />
 				<Card />
 				<Card />
 				<Card />

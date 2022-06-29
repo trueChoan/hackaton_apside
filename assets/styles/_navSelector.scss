@@ -1,0 +1,24 @@
+$orange: #e79759;
+$blue: #183650;
+$gris-clair: #f0f0f0;
+
+#NavSelector {
+	section {
+		width: 80%;
+		margin: auto;
+		color: white;
+	}
+
+	h1 {
+		margin-top: 60px;
+	}
+
+	p {
+		display: flex;
+		justify-content: space-between;
+
+		.colored {
+			color: $orange;
+		}
+	}
+}

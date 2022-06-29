@@ -1,3 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hello {
+  animation: App-logo-spin infinite 15s linear;
+  font-size: 15em;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 $orange: #e79759;
 $blue: #183650;
 $gris-clair: #f0f0f0;

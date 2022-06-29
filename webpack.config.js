@@ -13,6 +13,7 @@ Encore
 	.setPublicPath("/build")
 	// only needed for CDN's or sub-directory deploy
 	//.setManifestKeyPrefix('build/')
+	.enablePostCssLoader()
 
 	/*
 	 * ENTRY CONFIG
@@ -76,8 +77,7 @@ fullConfig.devServer = {
 	headers: {
 		"Access-Control-Allow-Origin": "*",
 		"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-		"Access-Control-Allow-Headers":
-			"X-Requested-With, content-type, Authorization",
+		"Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
 	},
 	watchFiles: {
 		paths: ["templates/**/*.html.twig"],

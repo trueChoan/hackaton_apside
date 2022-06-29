@@ -29,7 +29,7 @@ class Agency
     #[Groups('get')]
     private $name;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'agency')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'agency', cascade: "persist")]
     private $users;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'agency')]

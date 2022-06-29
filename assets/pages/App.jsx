@@ -1,13 +1,22 @@
 import React from "react";
-import Card from "../components/Card";
+
+import Header from "../components/Header";
+import SearchBar from "../components/Searchbar";
+import NavSelector from "../components/NavSelector";
+import TableCards from "../components/TableCards";
 
 const App = () => {
 	return (
-		<div>
-			<h1>Hello</h1>
-			<Card />
-			<Card />
-			<Card />
+		<div className="page-container">
+			<Header />
+
+			<SearchBar />
+
+			<main id="mainpage">
+				<NavSelector />
+
+				<TableCards />
+			</main>
 		</div>
 	);
 };

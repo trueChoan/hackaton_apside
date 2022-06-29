@@ -9,7 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RessourceRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => 'get'],
+    formats: ['json']
+)]
 class Ressource
 {
     #[ORM\Id]

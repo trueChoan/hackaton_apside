@@ -7,23 +7,33 @@ use App\Repository\AgencyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: AgencyRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => 'get'],
+    formats: ['json'],
+    collectionOperations: ['get', 'post'],
+    itemOperations: ['get']
+)]
 class Agency
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('get')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('get')]
     private $name;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'agency')]
     private $users;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'agency')]
+
     private $projects;
 
     public function __construct()

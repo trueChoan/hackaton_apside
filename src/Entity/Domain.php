@@ -7,7 +7,10 @@ use App\Repository\DomainRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DomainRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => 'get'],
+    formats: ['json']
+)]
 class Domain
 {
     #[ORM\Id]

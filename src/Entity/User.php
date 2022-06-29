@@ -7,38 +7,50 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => 'get'],
+    formats: ['json']
+)]
 class User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('get')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups('get')]
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
+    #[Groups('get')]
     private $lastname;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('get')]
     private $mail;
 
     #[ORM\Column(type: 'json')]
+    #[Groups('get')]
     private $role = [];
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups('get')]
     private $avatar;
 
     #[ORM\ManyToOne(targetEntity: JobPosition::class, inversedBy: 'users')]
+
     private $jobPosition;
 
     #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'users')]
+
     private $agency;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'user')]

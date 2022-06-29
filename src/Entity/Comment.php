@@ -7,7 +7,10 @@ use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => 'get'],
+    formats: ['json']
+)]
 class Comment
 {
     #[ORM\Id]

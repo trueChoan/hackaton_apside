@@ -1,0 +1,33 @@
+$orange: #e79759;
+$blue: #183650;
+$gris-clair: #f0f0f0;
+$vert: #2dc220;
+$bleu: #403ddb;
+$jaune: #dee20e;
+
+.Card {
+	background-color: $gris-clair;
+	display: flex;
+	justify-content: space-between;
+	margin: 12px;
+	height: 36px;
+
+	span:first-of-type {
+		padding: 0;
+		width: 20px;
+		height: 100%;
+	}
+
+	.title {
+		font-weight: bold;
+	}
+
+	.text-container {
+		.round {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: red;
+		}
+	}
+}

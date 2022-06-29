@@ -1,20 +1,25 @@
 import React from "react";
 
-const Card = () => {
+const Card = ({ bgColor, location }) => {
 	return (
 		<div className="Card">
-			<span></span>
-			<div>
-				<span>Projet :</span>
-				<span>Roman graphique pour branding & storytelling</span>
+			<span style={{ backgroundColor: bgColor }}></span>
+			<div className="text-container">
+				<div className="title">Projet :</div>
+				<div>Roman graphique pour branding & storytelling</div>
 			</div>
-			<div>
-				<span>Location :</span>
-				<span>Nantes</span>
+			<div className="text-container">
+				<div className="title">Location :</div>
+				<div>{location}</div>
 			</div>
-			<div>
-				<span>9 collaborators</span>
-				<span>images</span>
+			<div className="text-container">
+				<div>9 collaborators</div>
+				<div>
+					<span className="round"></span>
+					<span className="round"></span>
+					<span className="round"></span>
+					<span className="round"></span>
+				</div>
 			</div>
 		</div>
 	);

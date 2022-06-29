@@ -2,43 +2,56 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ProjectRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => 'get'],
+    formats: ['json']
+)]
 class Project
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('get')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups('get')]
     private $name;
 
     #[ORM\Column(type: 'text')]
+    #[Groups('get')]
     private $description;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Ressource::class)]
+    #[Groups('get')]
     private $ressource;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Domain::class)]
+    #[Groups('get')]
     private $domain;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: TechStack::class)]
+    #[Groups('get')]
     private $techStack;
 
     #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'projects')]
+    #[Groups('get')]
     private $agency;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'projects')]
+    #[Groups('get')]
     private $user;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Comment::class)]
+    #[Groups('get')]
     private $comment;
 
     public function __construct()

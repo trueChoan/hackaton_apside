@@ -28,7 +28,7 @@ class JobPosition
     #[Groups('get')]
     private $role;
 
-    #[ORM\OneToMany(mappedBy: 'JobPosition', targetEntity: User::class)]
+    #[ORM\OneToMany(mappedBy: 'jobPosition', targetEntity: User::class)]
     #[Groups('get')]
     private $users;
 

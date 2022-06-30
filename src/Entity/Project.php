@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'project'],
     formats: ['json']
 )]
 class Project
@@ -19,39 +19,39 @@ class Project
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('get')]
+    #[Groups('project')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $name;
 
     #[ORM\Column(type: 'text')]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $description;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Ressource::class)]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $ressource;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Domain::class)]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project'])]
     private $domain;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: TechStack::class)]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $techStack;
 
     #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'projects')]
-    #[Groups('get')]
+    #[Groups(['project', 'getUser', 'domain'])]
     private $agency;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'projects')]
-    #[Groups('get')]
+    #[Groups('project')]
     private $user;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Comment::class)]
-    #[Groups('get')]
+    #[Groups('project')]
     private $comment;
 
     public function __construct()

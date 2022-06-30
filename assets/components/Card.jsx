@@ -1,32 +1,10 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-// function rand() {
-// 	return Math.round(Math.random() * 20) - 10;
-// }
-// function getModalStyle() {
-// 	const top = 50 + rand();
-// 	const left = 50 + rand();
-// 	return {
-// 		top: `${top}%`,
-// 		left: `${left}%`,
-// 		transform: `translate(-${top}%, -${left}%)`,
-// 	};
-// }
-// const useStyles = makeStyles((theme) => ({
-// 	modal: {
-// 		display: "flex",
-// 		alignItems: "center",
-// 		justifyContent: "center",
-// 	},
-// 	paper: {
-// 		position: "absolute",
-// 		width: 450,
-// 		backgroundColor: theme.palette.background.paper,
-// 		boxShadow: theme.shadows[5],
-// 		padding: theme.spacing(2, 4, 3),
-// 	},
-// }));
+import React, { useState } from "react";
+
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
+const style = {};
 
 function giveColor(bgColor) {
 	switch (bgColor) {
@@ -36,6 +14,8 @@ function giveColor(bgColor) {
 			return "blue";
 		case "green":
 			return "green";
+		case "red":
+			return "red";
 		default:
 			return "yellow";
 	}
@@ -49,19 +29,32 @@ function giveStyle(bgColor) {
 			return "repeating-linear-gradient(120deg, transparent, transparent 5px, rgba(255,255,255,.5) 5px, rgba(255,255,255,.5) 8px";
 		case "green":
 			return "repeating-linear-gradient(200deg, transparent, transparent 8px, rgba(255,255,255,.5) 5px, rgba(255,255,255,.5) 16px";
+		case "red":
+			return "repeating-linear-gradient(70deg, transparent, transparent 8px, rgba(255,255,255,.5) 5px, rgba(255,255,255,.5) 16px";
 
 		default:
 			return "repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,.5) 5px, rgba(255,255,255,.5) 8px";
 	}
 }
 
-const Card = ({ bgColor, location, collab }) => {
+const Card = ({
+	bgColor,
+	name,
+	location,
+	collab,
+	resume,
+	stack,
+	userFName,
+	userLName,
+	flag,
+	domain,
+	progress,
+	creationDate,
+}) => {
 	const bgColor2 = giveColor(bgColor);
 	const bgStyle = giveStyle(bgColor);
 
-	// const classes = useStyles();
-	// const [modalStyle] = React.useState(getModalStyle);
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 	const handleOpen = () => {
 		setOpen(true);
 	};
@@ -77,14 +70,16 @@ const Card = ({ bgColor, location, collab }) => {
 					backgroundImage: bgStyle,
 				}}
 			></span>
-            
+
 			<div className="text-container">
 				<div className="title">Projet :</div>
-				<div>Roman graphique pour branding & storytelling</div>
+				<div>{name}</div>
 			</div>
 			<div className="text-container">
 				<div className="title">Location :</div>
-				<div>{location}</div>
+				<div>
+					{flag} - {location}
+				</div>
 			</div>
 			<div className="text-container">
 				<div>{collab} collaborators</div>
@@ -97,30 +92,173 @@ const Card = ({ bgColor, location, collab }) => {
 			</div>
 
 			<Modal
-				aria-labelledby="simple-modal-title"
-				aria-describedby="simple-modal-description"
 				open={open}
 				onClose={handleClose}
+				aria-labelledby="modal-modal-title"
+				aria-describedby="modal-modal-description"
 			>
-				<div
-					style={{
-						position: "absolute",
+				<Box
+					sx={{
+						position: "relative",
 						top: "50%",
 						left: "50%",
-						transform: "translate(-50%,-50%)",
-						backgroundColor: "white",
+						transform: "translate(-50%, -50%)",
+						width: "70%",
+						height: "70%",
+						bgcolor: "background.paper",
+						border: "2px solid #000",
+						boxShadow: 24,
+						p: 4,
 					}}
 				>
-					<h2>{location}</h2>
-					<p>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-						ipsa libero tempore maiores aut. Facilis labore ducimus laboriosam
-						iusto veniam harum maxime in totam dicta corporis deserunt iste
-						autem adipisci libero recusandae dolorum fugit ullam, saepe
-						corrupti. Obcaecati, earum corrupti repellendus molestiae impedit,
-						recusandae quas officia corporis, iusto maxime voluptates!
-					</p>
-				</div>
+					<div
+						className="side-panel"
+						style={{
+							backgroundColor: bgColor,
+							backgroundImage: bgStyle,
+							position: "absolute",
+							top: "0",
+							left: "0",
+							width: "6%",
+							height: "100%",
+							writingMode: "vertical-lr",
+							transform: "rotate(180deg)",
+							paddingTop: 20,
+							fontWeight: 700,
+							fontSize: "1.2rem",
+							letterSpacing: "1px",
+							display: "flex",
+							alignItems: "center",
+							color: "white",
+							textShadow:
+								"black 1px 1px,black -1px 1px,black -1px -1px,black 1px -1px",
+						}}
+					>
+						{domain}
+					</div>
+
+					<div
+						style={{
+							position: "absolute",
+							bottom: 0,
+							right: 0,
+							width: "94%",
+							height: "100%",
+							color: "white",
+						}}
+					>
+						<div
+							style={{
+								width: "90%",
+								height: "80%",
+								margin: "auto",
+								color: "black",
+								display: "grid",
+							}}
+						>
+							<Typography
+								id="modal-modal-title"
+								variant="h3"
+								component="h2"
+								style={{ gridColumn: "1/3" }}
+							>
+								PROJECT : {name}
+							</Typography>
+							<div>
+								Product Owner :{" "}
+								<b
+									style={{
+										fontWeight: "bold",
+									}}
+								>
+									{userFName} {userLName}
+								</b>
+							</div>
+							<div>
+								<b
+									style={{
+										fontWeight: "bold",
+									}}
+								>
+									{collab}
+								</b>{" "}
+								collaborators
+							</div>
+							<div>
+								Location :{" "}
+								<b
+									style={{
+										fontWeight: "bold",
+									}}
+								>
+									{location}
+								</b>
+							</div>
+							<div>
+								Starting Date :{" "}
+								<b
+									style={{
+										fontWeight: "bold",
+									}}
+								>
+									{creationDate}
+								</b>
+							</div>
+							<div style={{ gridColumn: "1/3" }}>
+								Resume : <br />
+								{resume}
+							</div>
+							<div>
+								Skills :{" "}
+								<b
+									style={{
+										fontWeight: "bold",
+									}}
+								>
+									{stack}
+								</b>
+							</div>
+							<div>autre truc</div>
+						</div>
+
+						<div
+							style={{
+								backgroundColor: "#183650",
+								width: "100%",
+								height: "20%",
+								display: "flex",
+								justifyContent: "space-between",
+								alignItems: "center",
+							}}
+						>
+							<p
+								style={{
+									width: "45%",
+									display: "flex",
+									justifyContent: "space-around",
+									fontSize: "2rem",
+								}}
+							>
+								<b>
+									Project Status :
+									{progress !== "100%" ? "In Progress" : "Complete"}
+								</b>
+								<span style={{ color: "#e79759", fontWeight: "bold" }}>
+									{progress}
+								</span>
+							</p>
+							<button
+								style={{
+									margin: "auto",
+									padding: 10,
+									border: "2px solid orange",
+								}}
+							>
+								JOIN GROUP
+							</button>
+						</div>
+					</div>
+				</Box>
 			</Modal>
 		</div>
 	);

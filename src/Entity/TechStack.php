@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TechStackRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'stack'],
     formats: ['json']
 )]
 class TechStack
@@ -19,16 +19,18 @@ class TechStack
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('get')]
+    #[Groups('stack')]
 
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('get')]
+    #[Groups('stack')]
 
     private $techno;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'techStack')]
+    #[Groups('stack')]
+
     private $project;
 
     public function getId(): ?int

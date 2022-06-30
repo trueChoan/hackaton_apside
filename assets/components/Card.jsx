@@ -64,31 +64,33 @@ const Card = ({
 
 	return (
 		<div className="Card" onClick={handleOpen}>
-			<span
+			<div
 				style={{
-					backgroundColor: bgColor2,
 					backgroundImage: bgStyle,
+					backgroundColor: bgColor2,
 				}}
-			></span>
+			></div>
 
-			<div className="text-container">
-				<div className="title">Projet :</div>
-				<div>{name}</div>
+			<div className="title container">
+				<div className="title2">Project</div>
+				<p>{name}</p>
 			</div>
-			<div className="text-container">
-				<div className="title">Location :</div>
-				<div>
+
+			<div className="location container">
+				<div className="title2">Location</div>
+				<p>
 					{flag} - {location}
-				</div>
+				</p>
 			</div>
-			<div className="text-container">
-				<div>{collab} collaborators</div>
-				<div className="round-container">
+
+			<div className="collab container">
+				<span>{collab} collaborators</span>
+				<p>
 					<div className="round r1"></div>
 					<div className="round r2"></div>
 					<div className="round r3"></div>
 					<div className="round r4"></div>
-				</div>
+				</p>
 			</div>
 
 			<Modal

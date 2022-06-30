@@ -11,13 +11,22 @@ $jaune: #dee20e;
 	justify-content: space-between;
 	margin: 12px;
 
-	span:first-of-type {
+	div:first-of-type {
+		margin: 0;
 		padding: 0;
-		width: 20px;
+		width: 4%;
 	}
 
 	.title {
+		padding-left: 10px;
+	}
+
+	.title2 {
 		font-weight: bold;
+	}
+
+	.collab {
+		align-self: center;
 	}
 
 	.round-container {
@@ -46,4 +55,3 @@ $jaune: #dee20e;
 		}
 	}
 }
-

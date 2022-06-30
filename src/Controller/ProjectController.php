@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use Symfony\Component\Mime\Email;
@@ -32,6 +33,7 @@ class ProjectController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setCreatedAt(new DateTime());
             $projectRepository->add($project, true);
 
             $email = (new Email())

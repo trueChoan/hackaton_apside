@@ -55,6 +55,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
 
             $project->setProgress(self::PROGRESS[array_rand(self::PROGRESS)]['progression']);
             $project->setCreatedAt($faker->dateTimeThisMonth());
+            $project->setProductOwner($faker->firstName('male' | 'female'));
             $manager->persist($project);
             $this->addReference('project_' . $i, $project);
         }

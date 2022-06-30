@@ -14,24 +14,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[ApiResource(
-    //attributes: ["security" => "is_granted('ROLE_PRODUCT_OWNER')"],
     normalizationContext: ['groups' => 'project'],
     formats: ['json'],
-    collectionOperations: [
-        "get",
-        "post" => ["security" => "is_granted('ROLE_PRODUCT_OWNER')"],
-    ],
-    itemOperations: [
-        "get",
-        "delete",
-    ],
 )]
 class Project
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['project', 'getUser'])]
+    #[Groups('project')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
@@ -69,6 +60,10 @@ class Project
     #[ORM\Column(type: 'string', nullable: true)]
     #[Groups(['project', 'getUser'])]
     private $progress;
+
+    #[ORM\Column(type: 'string', length: 45)]
+    #[Groups(['project', 'getUser'])]
+    private $productOwner;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
     #[Groups(['project', 'getUser'])]
@@ -243,12 +238,24 @@ class Project
         return $this;
     }
 
+    public function getProductOwner(): ?string
+    {
+        return $this->productOwner;
+    }
+
+    public function setProductOwner(string $productOwner): self
+    {
+        $this->productOwner = $productOwner;
+
+        return $this;
+    }
+
     public function getProgress(): ?string
     {
         return $this->progress;
     }
 
-    public function setProgress(?string $progress): self
+    public function setProgress(string $progress): self
     {
         $this->progress = $progress;
 
@@ -260,7 +267,7 @@ class Project
         return $this->created_at;
     }
 
-    public function setCreatedAt(?\DateTime $created_at): self
+    public function setCreatedAt(\DateTime $created_at): self
     {
         $this->created_at = $created_at;
 

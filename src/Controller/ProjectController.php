@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/project')]
 class ProjectController extends AbstractController
@@ -29,6 +30,7 @@ class ProjectController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setCreatedAt(new DateTime());
             $projectRepository->add($project, true);
 
             return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);

@@ -24,7 +24,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
     itemOperations: [
         "get",
         "delete",
-        "put" => ["security" => "is_granted('ROLE_PRODUCT_OWNER')"],
     ],
 )]
 class Project

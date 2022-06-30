@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
+use Symfony\Component\Mime\Email;
 use App\Repository\ProjectRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/project')]
 class ProjectController extends AbstractController
@@ -22,7 +25,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route('/new', name: 'app_project_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProjectRepository $projectRepository): Response
+    public function new(Request $request, ProjectRepository $projectRepository, MailerInterface $mailer): Response
     {
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
@@ -31,6 +34,15 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $projectRepository->add($project, true);
 
+            $email = (new Email())
+                ->from('admin@apside.com')
+                ->to('johan.ala@example.com')
+                ->subject('Nouveau projet chez Apside' . $project->getAgency()['name'])
+                ->html($this->renderView('layoutEmail.html.twig', [
+                    'project' => $project
+                ]));
+
+            $mailer->send($email);
             return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -69,7 +81,7 @@ class ProjectController extends AbstractController
     #[Route('/{id}', name: 'app_project_delete', methods: ['POST'])]
     public function delete(Request $request, Project $project, ProjectRepository $projectRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $project->getId(), $request->request->get('_token'))) {
             $projectRepository->remove($project, true);
         }
 

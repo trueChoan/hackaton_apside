@@ -1,14 +1,17 @@
 import React from "react";
 
 import Card from "./Card";
+import OrderBy from "./OrderBy";
+import SearchResult from "./SearchResult";
+import ButtonPage from "./ButtonPage";
 
 const TableCards = () => {
 	return (
 		<section id="TableCards">
 			<article className="bandeau">
-				<span>Order by</span>
-				<span>Search results : 50</span>
-				<span>1 | 2 | 3 | ...</span>
+			<OrderBy />
+			<SearchResult />
+			<ButtonPage />
 			</article>
 			<article className="cards-container">
 				<Card bgColor="orange" location="Nantes" collab={19} />

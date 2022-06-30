@@ -18,12 +18,7 @@ class ProjectType extends AbstractType
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
             ->add('agency', null, ['choice_label' => 'name'])
-            // ->add('user', null, [
-            //     'choice_label' => 'lastname',
-            //     'multiple' => true,
-            //     'expanded' => true,
-            //     'by_reference' => false,
-            // ])
+            ->add('progress', TextType::class)
             ->add('techStack', null, ['choice_label' => 'techno'])
             ->add('domain', null, ['choice_label' => 'name'])
         ;

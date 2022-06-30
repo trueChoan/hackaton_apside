@@ -58,12 +58,15 @@ class Project
     private $domain;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(['project', 'getUser'])]
     private $progress;
     
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups(['project', 'getUser'])]
     private $productOwner;
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups(['project', 'getUser'])]
     private $createdAt;
 
     public function __construct()

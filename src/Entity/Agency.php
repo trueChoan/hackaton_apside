@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AgencyRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'agency'],
     formats: ['json'],
     collectionOperations: ['get', 'post'],
     itemOperations: ['get']
@@ -22,18 +22,19 @@ class Agency
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('get')]
+    #[Groups('agency')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'getJob'])]
     private $name;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'agency')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'agency', cascade: ["persist"])]
+    #[Groups('agency')]
     private $users;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'agency')]
-
+    #[Groups('agency')]
     private $projects;
 
     public function __construct()

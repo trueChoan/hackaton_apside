@@ -3,16 +3,18 @@
 namespace App\Entity;
 
 use App\Entity\User;
+use App\Entity\TechStack;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Proxies\__CG__\App\Entity\TechStack as EntityTechStack;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'project'],
     formats: ['json']
 )]
 class Project
@@ -20,37 +22,39 @@ class Project
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('get')]
+    #[Groups('project')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $name;
 
     #[ORM\Column(type: 'text')]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $description;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Ressource::class)]
-    #[Groups('get')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $ressource;
 
     #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'projects')]
-    #[Groups('get')]
+    #[Groups(['project', 'getUser', 'domain'])]
     private $agency;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'projects')]
-    #[Groups('get')]
+    #[Groups('project')]
     private $user;
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Comment::class)]
-    #[Groups('get')]
+    #[Groups('project')]
     private $comment;
 
     #[ORM\ManyToOne(targetEntity: TechStack::class, inversedBy: 'projects')]
-    private $techStack;
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
+    private ?TechStack $techStack;
 
     #[ORM\ManyToOne(targetEntity: Domain::class, inversedBy: 'projects')]
+    #[Groups(['agency', 'getUser', 'project'])]
     private $domain;
 
     public function __construct()

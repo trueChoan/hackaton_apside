@@ -7,10 +7,12 @@ use App\Repository\DomainRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: DomainRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'domain'],
     formats: ['json']
 )]
 class Domain
@@ -18,18 +20,24 @@ class Domain
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('domain')]
+
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups('domain')]
     private $name;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups('domain')]
     private $color;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
+    #[Groups('domain')]
     private $image;
 
     #[ORM\OneToMany(mappedBy: 'domain', targetEntity: Project::class)]
+    #[Groups('domain')]
     private $projects;
 
     public function __construct()

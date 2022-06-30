@@ -1,0 +1,12 @@
+$orange: #e79759;
+$blue: #183650;
+$gris-clair: #f0f0f0;
+
+#TableCards {
+	.bandeau {
+		display: flex;
+		justify-content: space-around;
+		padding: 10px 0;
+		font-weight: 600;
+	}
+}

@@ -6,13 +6,14 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TechStackRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Project;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: TechStackRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'stack'],
     formats: ['json']
 )]
 class TechStack
@@ -20,14 +21,15 @@ class TechStack
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('get')]
+    #[Groups('stack')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('get')]
+    #[Groups('stack')]
     private $techno;
 
     #[ORM\OneToMany(mappedBy: 'techStack', targetEntity: Project::class)]
+    #[Groups('stack')]
     private $projects;
 
     public function __construct()

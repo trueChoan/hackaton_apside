@@ -4,25 +4,10 @@
     display: block;
     position: relative;
     justify-content: space-between;
-    width: 80%;
+    width: 20%;
     font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
     font-size: 18px;
     color: #60666d;
-  }
-  @media (min-width: 768px) {
-    .select-box {
-      width: 70%;
-    }
-  }
-  @media (min-width: 992px) {
-    .select-box {
-      width: 50%;
-    }
-  }
-  @media (min-width: 1200px) {
-    .select-box {
-      width: 30%;
-    }
   }
 
   .select-box__current {
@@ -128,18 +113,32 @@
   .searchingflex {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 30%;
+    margin-top: 1%;
+    margin-right: 8%;
   }
 
-  .searchingresult {
-    font-family: 'Hind', sans-serif;
-    font-size: 1.5rem;
-    margin-right: 20px;
+  .addproject {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50%;
+    height: 40px;
+    background-color: #E79759;
+    border-radius: 2px;
   }
 
-  .projectresult {
+  .addprojectp {
+    color: white;
     font-family: 'Hind', sans-serif;
-    font-size: 1.5rem;
-    margin-right: 80px;
-    color: #E79759;
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+
+
+  .addproject:hover {
+    background-color: #E77620;
+    transition: 800ms;
   }

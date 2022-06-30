@@ -4,11 +4,15 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\DomainRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: DomainRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'domain'],
     formats: ['json']
 )]
 class Domain
@@ -16,20 +20,30 @@ class Domain
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('domain')]
+
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups('domain')]
     private $name;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups('domain')]
     private $color;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
+    #[Groups('domain')]
     private $image;
 
-    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'domain')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $project;
+    #[ORM\OneToMany(mappedBy: 'domain', targetEntity: Project::class)]
+    #[Groups('domain')]
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -72,14 +86,32 @@ class Domain
         return $this;
     }
 
-    public function getProject(): ?Project
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
     {
-        return $this->project;
+        return $this->projects;
     }
 
-    public function setProject(?Project $project): self
+    public function addProject(Project $project): self
     {
-        $this->project = $project;
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setDomain($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getDomain() === $this) {
+                $project->setDomain(null);
+            }
+        }
 
         return $this;
     }

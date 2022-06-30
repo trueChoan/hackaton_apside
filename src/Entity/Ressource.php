@@ -7,10 +7,12 @@ use App\Repository\RessourceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: RessourceRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'ressource'],
     formats: ['json']
 )]
 class Ressource
@@ -18,15 +20,19 @@ class Ressource
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[GROUPS('ressource')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
+    #[GROUPS('ressource')]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[GROUPS('ressource')]
     private $link;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'ressource')]
+    #[GROUPS('ressource')]
     private $project;
 
     public function getId(): ?int

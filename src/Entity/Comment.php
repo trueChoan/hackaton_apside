@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\CommentRepository;
+use App\Entity\Project;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'comment'],
     formats: ['json']
 )]
 class Comment
@@ -16,15 +19,19 @@ class Comment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('comment')]
     private $id;
 
     #[ORM\Column(type: 'text')]
+    #[Groups(['comment', 'getUser'])]
     private $comment;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'comment')]
+    #[Groups(['comment', 'getUser'])]
     private $project;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comment')]
+    #[Groups('comment')]
     private $user;
 
     public function getId(): ?int

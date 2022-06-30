@@ -60,7 +60,7 @@ class Project
     #[ORM\Column(type: 'string', nullable: true)]
     #[Groups(['project', 'getUser'])]
     private $progress;
-    
+
     #[ORM\Column(type: 'string', length: 45)]
     #[Groups(['project', 'getUser'])]
     private $productOwner;

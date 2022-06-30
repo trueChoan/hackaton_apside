@@ -1373,6 +1373,9 @@
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+"@symfony/ux-notify@file:vendor/symfony/ux-notify/Resources/assets":
+  version "1.0.0"
+
 "@symfony/webpack-encore@^2.0.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@symfony/webpack-encore/-/webpack-encore-2.1.0.tgz#353a1b8bc38022046cbbc3d627c4076aca2e28c3"

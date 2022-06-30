@@ -14,8 +14,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 #[ApiResource(
+    //attributes: ["security" => "is_granted('ROLE_PRODUCT_OWNER')"],
     normalizationContext: ['groups' => 'project'],
-    formats: ['json']
+    formats: ['json'],
+    collectionOperations: [
+        "get",
+        "post" => ["security" => "is_granted('ROLE_PRODUCT_OWNER')"],
+    ],
+    itemOperations: [
+        "get",
+        "delete",
+        "put" => ["security" => "is_granted('ROLE_PRODUCT_OWNER')"],
+    ],
 )]
 class Project
 {

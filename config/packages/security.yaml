@@ -13,6 +13,10 @@ security:
         main:
             lazy: true
             provider: users_in_memory
+    role_hierarchy:
+        ROLE_CONTRIBUTOR: ROLE_USER
+        ROLE_PRODUCT_OWNER: ROLE_CONTRIBUTOR
+        ROLE_ADMIN: ROLE_PRODUCT_OWNER
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

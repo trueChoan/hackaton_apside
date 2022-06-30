@@ -37,6 +37,9 @@ class Agency
     #[Groups('agency')]
     private $projects;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $flag;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -110,6 +113,18 @@ class Agency
         if ($this->projects->removeElement($project)) {
             $project->removeAgency($this);
         }
+
+        return $this;
+    }
+
+    public function getFlag(): ?string
+    {
+        return $this->flag;
+    }
+
+    public function setFlag(?string $flag): self
+    {
+        $this->flag = $flag;
 
         return $this;
     }

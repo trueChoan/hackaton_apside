@@ -22,11 +22,11 @@ class Agency
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('agency')]
+    #[Groups(['agency', 'project'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(['agency', 'getUser', 'getJob'])]
+    #[Groups(['agency', 'getUser', 'getJob', 'project'])]
     private $name;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'agency', cascade: ["persist"])]

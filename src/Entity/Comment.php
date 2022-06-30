@@ -19,15 +19,15 @@ class Comment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('comment')]
+    #[Groups(['comment', 'getUser'])]
     private $id;
 
     #[ORM\Column(type: 'text')]
-    #[Groups(['comment', 'getUser'])]
+    #[Groups(['comment', 'getUser', 'project'])]
     private $comment;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'comment')]
-    #[Groups(['comment', 'getUser'])]
+    #[Groups('comment')]
     private $project;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comment')]

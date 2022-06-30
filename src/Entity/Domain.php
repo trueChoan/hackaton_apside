@@ -20,20 +20,20 @@ class Domain
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('domain')]
+    #[Groups(['domain', 'project', 'getUser'])]
 
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('domain')]
+    #[Groups(['domain', 'project', 'getUser'])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('domain')]
+    #[Groups(['domain', 'project', 'getUser'])]
     private $color;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
-    #[Groups('domain')]
+    #[Groups(['domain', 'project', 'getUser'])]
     private $image;
 
     #[ORM\OneToMany(mappedBy: 'domain', targetEntity: Project::class)]

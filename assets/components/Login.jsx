@@ -1,7 +1,6 @@
 import React from "react"
 import "../styles/login.css"
 import { useForm } from 'react-hook-form';
-import { Slide } from "react-awesome-reveal";
 import { Link } from 'react-router-dom';
 
 import Triangle from "../src/image/triangle.png";

@@ -17,6 +17,8 @@
 
 .formtitle {
     display: flex;
+    font-size: 1.5rem;
+    font-weight: 600;
     justify-content: center;
     margin-top: 5%;
     font-family: 'Montserrat', sans-serif;

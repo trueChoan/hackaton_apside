@@ -11,6 +11,16 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class ProjectFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const PROGRESS = [
+        ['progression' => 'In preparation'],
+        ['progression' => 'Project Done'],
+        ['progression' => '0%'],
+        ['progression' => '25%'],
+        ['progression' => '50%'],
+        ['progression' => '75%'],
+        ['progression' => '80%'],
+        ['progression' => '100%'],
+    ];
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
@@ -26,6 +36,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             $project->setTechStack($this->getReference('tech_stack_' . rand(0, 3)));
             $project->addAgency($this->getReference('agency_' . rand(0, 10)));
             $project->addUser($this->getReference('user_' . rand(0, 19)));
+            $project->setProgress(self::PROGRESS[array_rand(self::PROGRESS)]['progression']);
+            $project->setCreatedAt($faker->dateTimeThisMonth());
             $manager->persist($project);
             $this->addReference('project_' . $i, $project);
         }

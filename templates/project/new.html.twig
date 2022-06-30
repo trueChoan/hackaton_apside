@@ -2,16 +2,12 @@
 
 {% block title %}New Project{% endblock %}
 
-{% form_theme form 'tailwind_2_layout.html.twig' %}
 {% block body %}
-    <h1>Create new Project</h1>
-<div class="form w-full bg-red-200">
-    <div class="flex flex-row">
+    <h1 class="text-center text-black font-black text-4xl mt-5">Create new Project</h1>
+
         {{ include('project/_form.html.twig') }}
-    </div>
-        
-</div>
+  
     
 
-    <a href="{{ path('app_project_index') }}">back to list</a>
+    <a href="{{ path('app_project_index') }}" class="mx-auto">back to list</a>
 {% endblock %}

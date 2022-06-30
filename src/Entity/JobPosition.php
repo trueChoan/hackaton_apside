@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: JobPositionRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'getJob'],
     formats: ['json'],
     collectionOperations: ['get', 'post'],
     itemOperations: ['get']
@@ -21,15 +21,15 @@ class JobPosition
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('get')]
+    #[Groups(['getJob', 'agency', 'project'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Groups('get')]
+    #[Groups(['getJob', 'getUser', 'agency', 'project'])]
     private $role;
 
     #[ORM\OneToMany(mappedBy: 'jobPosition', targetEntity: User::class)]
-    #[Groups('get')]
+    #[Groups('getJob')]
     private $users;
 
     public function __construct()

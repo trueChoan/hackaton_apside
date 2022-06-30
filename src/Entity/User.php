@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => 'get'],
+    normalizationContext: ['groups' => 'getUser'],
     formats: ['json']
 )]
 class User
@@ -19,44 +19,46 @@ class User
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('get')]
+    #[Groups(['getUser', 'getJob', 'agency', 'project'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('get')]
+    #[Groups(['getUser', 'getJob', 'agency', 'project'])]
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 45, nullable: true)]
-    #[Groups('get')]
+    #[Groups(['getUser', 'getJob', 'agency', 'project'])]
     private $lastname;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Groups('get')]
+    #[Groups(['getUser', 'getJob', 'agency', 'project'])]
     private $mail;
 
     #[ORM\Column(type: 'json')]
-    #[Groups('get')]
+    #[Groups(['getUser', 'getJob', 'agency', 'project'])]
     private $role = [];
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Groups('get')]
+    #[Groups(['getUser', 'getJob', 'agency', 'project'])]
     private $avatar;
 
     #[ORM\ManyToOne(targetEntity: JobPosition::class, inversedBy: 'users')]
-
+    #[Groups(['getUser', 'agency', 'project'])]
     private $jobPosition;
 
     #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'users')]
-
+    #[Groups(['getUser', 'getJob', 'project'])]
     private $agency;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'user')]
+    #[Groups(['getUser', 'agency'])]
     private $projects;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
+    #[Groups('getUser')]
     private $comment;
 
     public function __construct()
@@ -148,9 +150,9 @@ class User
         return $this->jobPosition;
     }
 
-    public function setJobPosition(?JobPosition $jopPosition): self
+    public function setJobPosition(?JobPosition $jobPosition): self
     {
-        $this->jopPosition = $jopPosition;
+        $this->jobPosition = $jobPosition;
 
         return $this;
     }

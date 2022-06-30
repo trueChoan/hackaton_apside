@@ -30,6 +30,7 @@ class AgencyFixtures extends Fixture
         foreach (self::AGENCIES as $key => $location) {
             $agency = new Agency();
             $agency->setName($location['name']);
+            $manager->persist($agency);
             $this->addReference('agency_' . $key, $agency);
         }
 

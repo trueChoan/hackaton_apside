@@ -5,7 +5,9 @@ $gris-clair: #f0f0f0;
 #TableCards {
 	.bandeau {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: row;
 		padding: 10px 0;
 		font-weight: 600;
 	}

@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300&family=Montserrat:wght@100&display=swap');
+
+.connector {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    
+}
+
+.formlogin {
+    width: 589px;
+    height: 535px;
+    background-color: #F5F5F5;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.formtitle {
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: 600;
+    justify-content: center;
+    margin-top: 5%;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10%;
+
+}
+
+.enterinfo {
+    width: 50%;
+    height: 4vh;
+    border-radius: 3px;
+    border-style: none;
+}
+
+.enterinfo2 {
+    width: 50%;
+    height: 4vh;
+    border-radius: 3px;
+    border-style: none;
+}
+
+.buttonsubmit {
+    margin-top: 8%;
+    width: 224px;
+    height: 55px;
+    background-color: #E79759;
+    border-style: none;
+    border-radius: 1px;
+}
+
+.buttonforgot {
+    margin-top: 6%;
+    width: 282px;
+    height: 43px;
+    background-color: #E79759;
+    border-style: none;
+    border-radius: 1px;
+}
+
+.email {
+    display: flex;
+    margin-right: 25vh;
+    font-family: 'Hind', sans-serif;
+}
+
+.password {
+    display: flex;
+    margin-right: 22vh;
+    margin-top: 5%;
+    font-family: 'Hind', sans-serif;
+
+}
+
+.triangle {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 13%;
+    margin-left: -3%;
+    z-index: -50;
+    transform: rotate(1deg);
+}
+
+.triforce {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.connected {
+    color: white;
+}
+
+.forgot {
+    color: white;
+}

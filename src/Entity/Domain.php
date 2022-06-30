@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\DomainRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -34,10 +36,14 @@ class Domain
     #[Groups('domain')]
     private $image;
 
-    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'domain')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\OneToMany(mappedBy: 'domain', targetEntity: Project::class)]
     #[Groups('domain')]
-    private $project;
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -80,14 +86,32 @@ class Domain
         return $this;
     }
 
-    public function getProject(): ?Project
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
     {
-        return $this->project;
+        return $this->projects;
     }
 
-    public function setProject(?Project $project): self
+    public function addProject(Project $project): self
     {
-        $this->project = $project;
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setDomain($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getDomain() === $this) {
+                $project->setDomain(null);
+            }
+        }
 
         return $this;
     }

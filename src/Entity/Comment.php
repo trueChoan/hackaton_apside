@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\CommentRepository;
+use App\Entity\Project;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 

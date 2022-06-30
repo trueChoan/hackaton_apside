@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+use App\Entity\TechStack;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Proxies\__CG__\App\Entity\TechStack as EntityTechStack;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
@@ -34,14 +37,6 @@ class Project
     #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $ressource;
 
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Domain::class)]
-    #[Groups(['agency', 'getUser', 'project'])]
-    private $domain;
-
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: TechStack::class)]
-    #[Groups(['agency', 'getUser', 'project', 'domain'])]
-    private $techStack;
-
     #[ORM\ManyToMany(targetEntity: Agency::class, inversedBy: 'projects')]
     #[Groups(['project', 'getUser', 'domain'])]
     private $agency;
@@ -54,11 +49,17 @@ class Project
     #[Groups('project')]
     private $comment;
 
+    #[ORM\ManyToOne(targetEntity: TechStack::class, inversedBy: 'projects')]
+    #[Groups(['agency', 'getUser', 'project', 'domain'])]
+    private ?TechStack $techStack;
+
+    #[ORM\ManyToOne(targetEntity: Domain::class, inversedBy: 'projects')]
+    #[Groups(['agency', 'getUser', 'project'])]
+    private $domain;
+
     public function __construct()
     {
         $this->ressource = new ArrayCollection();
-        $this->domain = new ArrayCollection();
-        $this->techStack = new ArrayCollection();
         $this->agency = new ArrayCollection();
         $this->user = new ArrayCollection();
         $this->comment = new ArrayCollection();
@@ -117,66 +118,6 @@ class Project
             // set the owning side to null (unless already changed)
             if ($ressource->getProject() === $this) {
                 $ressource->setProject(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Domain>
-     */
-    public function getDomain(): Collection
-    {
-        return $this->domain;
-    }
-
-    public function addDomain(Domain $domain): self
-    {
-        if (!$this->domain->contains($domain)) {
-            $this->domain[] = $domain;
-            $domain->setProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDomain(Domain $domain): self
-    {
-        if ($this->domain->removeElement($domain)) {
-            // set the owning side to null (unless already changed)
-            if ($domain->getProject() === $this) {
-                $domain->setProject(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TechStack>
-     */
-    public function getTechStack(): Collection
-    {
-        return $this->techStack;
-    }
-
-    public function addTechStack(TechStack $techStack): self
-    {
-        if (!$this->techStack->contains($techStack)) {
-            $this->techStack[] = $techStack;
-            $techStack->setProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTechStack(TechStack $techStack): self
-    {
-        if ($this->techStack->removeElement($techStack)) {
-            // set the owning side to null (unless already changed)
-            if ($techStack->getProject() === $this) {
-                $techStack->setProject(null);
             }
         }
 
@@ -257,6 +198,30 @@ class Project
                 $comment->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTechStack(): ?TechStack
+    {
+        return $this->techStack;
+    }
+
+    public function setTechStack(?TechStack $techStack): self
+    {
+        $this->techStack = $techStack;
+
+        return $this;
+    }
+
+    public function getDomain(): ?Domain
+    {
+        return $this->domain;
+    }
+
+    public function setDomain(?Domain $domain): self
+    {
+        $this->domain = $domain;
 
         return $this;
     }

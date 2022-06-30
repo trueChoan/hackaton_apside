@@ -21,11 +21,11 @@ class JobPosition
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['getJob', 'agency'])]
+    #[Groups(['getJob', 'agency', 'project'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Groups(['getJob', 'getUser', 'agency'])]
+    #[Groups(['getJob', 'getUser', 'agency', 'project'])]
     private $role;
 
     #[ORM\OneToMany(mappedBy: 'jobPosition', targetEntity: User::class)]

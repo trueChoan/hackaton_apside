@@ -32,7 +32,7 @@ class Project
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups('project')]
+    #[Groups(['project', 'getUser'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
@@ -66,6 +66,14 @@ class Project
     #[ORM\ManyToOne(targetEntity: Domain::class, inversedBy: 'projects')]
     #[Groups(['agency', 'getUser', 'project'])]
     private $domain;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Groups(['project', 'getUser'])]
+    private $progress;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['project', 'getUser'])]
+    private $created_at;
 
     public function __construct()
     {
@@ -232,6 +240,30 @@ class Project
     public function setDomain(?Domain $domain): self
     {
         $this->domain = $domain;
+
+        return $this;
+    }
+
+    public function getProgress(): ?string
+    {
+        return $this->progress;
+    }
+
+    public function setProgress(?string $progress): self
+    {
+        $this->progress = $progress;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTime $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }

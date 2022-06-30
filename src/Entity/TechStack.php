@@ -25,7 +25,7 @@ class TechStack
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[Groups('stack')]
+    #[Groups(['stack', 'project', 'getUser'])]
     private $techno;
 
     #[ORM\OneToMany(mappedBy: 'techStack', targetEntity: Project::class)]

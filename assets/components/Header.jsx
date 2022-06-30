@@ -3,11 +3,10 @@ import React from "react";
 import portrait from "/assets/src-2/portrait.jpg";
 import logo from "/assets/src-2/logo.png";
 import gearsolid from "/assets/src-2/gear-solid.svg";
-
 const Header = () => {
   return (
     <div className="flex justify-between items-center align-center px-6 py-2">
-      <img src={logo} alt="logo Apside" className="w-[22vh] h-auto" />
+      <img src={logo} alt="logo Apside" className="w-[22vh] h-auto disable-blur" />
       <div className="flex flex-row">
         <div className="flex flex-col justify-center mr-4">
           <p className="text-sm font-bold">Damien Dupont</p>

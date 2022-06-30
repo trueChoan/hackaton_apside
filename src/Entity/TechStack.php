@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TechStackRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -19,16 +21,19 @@ class TechStack
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     #[Groups('get')]
-
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
     #[Groups('get')]
-
     private $techno;
 
-    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'techStack')]
-    private $project;
+    #[ORM\OneToMany(mappedBy: 'techStack', targetEntity: Project::class)]
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -47,14 +52,32 @@ class TechStack
         return $this;
     }
 
-    public function getProject(): ?Project
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
     {
-        return $this->project;
+        return $this->projects;
     }
 
-    public function setProject(?Project $project): self
+    public function addProject(Project $project): self
     {
-        $this->project = $project;
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setTechStack($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getTechStack() === $this) {
+                $project->setTechStack(null);
+            }
+        }
 
         return $this;
     }

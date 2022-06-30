@@ -134,11 +134,12 @@
   .searchingresult {
     font-family: 'Hind', sans-serif;
     font-size: 1.5rem;
+    margin-right: 20px;
   }
 
   .projectresult {
     font-family: 'Hind', sans-serif;
     font-size: 1.5rem;
-    margin-left: 5px;
+    margin-right: 80px;
     color: #E79759;
   }

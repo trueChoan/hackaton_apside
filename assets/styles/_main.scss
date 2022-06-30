@@ -44,16 +44,17 @@ body {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	justify-content: space-between;
 
 	#NavSelector {
-		width: 20vw;
+		width: 20%;
+		max-width: 200px;
 		height: 100%;
 		background-color: $blue;
 	}
 
 	#TableCards {
-		width: 80vw;
+		width: 88%;
+		margin: 0 auto;
 		background-color: white;
 	}
 }

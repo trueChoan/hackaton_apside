@@ -10,24 +10,39 @@ $jaune: #dee20e;
 	display: flex;
 	justify-content: space-between;
 	margin: 12px;
-	height: 36px;
 
 	span:first-of-type {
 		padding: 0;
 		width: 20px;
-		height: 100%;
 	}
 
 	.title {
 		font-weight: bold;
 	}
 
-	.text-container {
+	.round-container {
+		display: flex;
+
 		.round {
-			width: 10px;
-			height: 10px;
+			width: 20px;
+			height: 20px;
 			border-radius: 50%;
-			background-color: red;
+			background-color: grey;
+			margin: 1px;
+			border: 1px black solid;
+			position: relative;
+		}
+
+		.r2 {
+			left: -10px;
+		}
+
+		.r3 {
+			left: -20px;
+		}
+
+		.r4 {
+			left: -30px;
 		}
 	}
 }

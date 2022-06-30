@@ -1,6 +1,7 @@
 $orange: #e79759;
 $blue: #183650;
 $gris-clair: #f0f0f0;
+$height: 8%;
 
 body {
 	margin: 0;
@@ -8,13 +9,12 @@ body {
 
 	#app {
 		width: 100vw;
-		min-height: 100vh;
+		height: 100vh;
 
 		.page-container {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
+			height: 100%;
+			// display: flex;
+			// flex-direction: column;
 		}
 	}
 
@@ -31,23 +31,24 @@ body {
 
 #Header {
 	width: 100%;
-	height: 6vh;
+	height: $height;
 }
 
 #SearchBar {
 	width: 100%;
-	height: 14vh;
+	height: 2 * $height;
 	background-color: aquamarine;
 }
 
 #mainpage {
 	width: 100%;
-	height: 80vh;
+	height: 100%;
 	display: flex;
 	justify-content: space-between;
 
 	#NavSelector {
 		width: 20vw;
+		height: 100%;
 		background-color: $blue;
 	}
 

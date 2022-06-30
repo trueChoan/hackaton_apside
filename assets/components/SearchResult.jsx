@@ -3,10 +3,12 @@ import "../styles/filterpagebutton.css"
 
 function SearchResult() {
 
+    const url = 'http://localhost:8000/project/new'
+
+
 return (
     <div className="searchingflex">
-    <p className="searchingresult">Search result :</p>
-    <p className="projectresult">50 projects found</p>
+    <button className="addproject" onClick={() => window.open(url, '_blank')}><p className="addprojectp">Add a project</p></button>
     </div>
 );
 

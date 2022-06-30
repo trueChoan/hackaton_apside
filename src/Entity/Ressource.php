@@ -20,15 +20,15 @@ class Ressource
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[GROUPS('ressource')]
+    #[GROUPS(['ressource', 'project'])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 45)]
-    #[GROUPS('ressource')]
+    #[GROUPS(['ressource', 'project', 'getUser'])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[GROUPS('ressource')]
+    #[GROUPS(['ressource', 'project', 'getUser'])]
     private $link;
 
     #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'ressource')]

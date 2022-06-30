@@ -15,19 +15,17 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i  < 10; $i ++) { 
+        for ($i = 0; $i  < 10; $i++) {
             $project = new Project();
 
             $project->setName($faker->word());
             $project->setDescription($faker->paragraph());
-          
+
             // $project->addRessource($faker->url());
-            $project->setDomain($this->getReference('domain_' . rand(0,3)));
+            $project->setDomain($this->getReference('domain_' . rand(0, 3)));
             $project->setTechStack($this->getReference('tech_stack_' . rand(0, 3)));
-            // $project->addAgency();
-            // $project->addUser();
-            // $project->addComment();
-            
+            $project->addAgency($this->getReference('agency_' . rand(0, 10)));
+            $project->addUser($this->getReference('user_' . rand(0, 19)));
             $manager->persist($project);
             $this->addReference('project_' . $i, $project);
         }
@@ -39,8 +37,10 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
     {
         // Tu retournes ici toutes les classes de fixtures dont ProgramFixtures dépend
         return [
-          DomainFixtures::class,
-          TechStackFixtures::class,
+            DomainFixtures::class,
+            TechStackFixtures::class,
+            UserFixtures::class,
+            AgencyFixtures::class
         ];
     }
 }

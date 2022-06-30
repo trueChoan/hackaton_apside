@@ -48,7 +48,11 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             $project->setDomain($this->getReference('domain_' . rand(0, 3)));
             $project->setTechStack($this->getReference('tech_stack_' . rand(0, 3)));
             $project->addAgency($this->getReference('agency_' . rand(0, 10)));
-            $project->addUser($this->getReference('user_' . rand(4, 19)));
+            $numberUser = rand(4, 10);
+            for ($j = 0; $j < $numberUser; $j++) {
+                $project->addUser($this->getReference('user_' . rand(1, 19)));
+            }
+
             $project->setProgress(self::PROGRESS[array_rand(self::PROGRESS)]['progression']);
             $project->setCreatedAt($faker->dateTimeThisMonth());
             $project->setProductOwner($faker->firstName('male' | 'female'));

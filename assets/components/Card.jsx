@@ -77,7 +77,7 @@ const Card = ({ bgColor, location, collab }) => {
 					backgroundImage: bgStyle,
 				}}
 			></span>
-
+            
 			<div className="text-container">
 				<div className="title">Projet :</div>
 				<div>Roman graphique pour branding & storytelling</div>

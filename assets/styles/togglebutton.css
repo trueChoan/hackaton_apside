@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300&family=Montserrat:wght@100&display=swap');
+
+
+.togglebutton {
+    height: 80px;
+    width: 300px;
+    border: none;
+    position: relative;
+    font-size: 25px;
+    background-color: #0A1E30;
+    color: white;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+.togglebutton.p {
+    display: none;
+}
+
+  
+.toggleclose {
+    background-color: #d86711;
+  }
+
+.togglebutton:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 0.1em;
+    margin-top: -19.5%;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.8s;
+    box-shadow: 0 0 15px 15px white;
+  }
+
+  .togglebutton:active:after {
+    box-shadow: 0 0 0 0 white;
+    border-radius: 0.1em;
+    left: 0;
+    top:0;
+    opacity: 1;
+    transition: 0s;
+  }
+
+  .togglebutton:active {
+    top: 1px;
+  }
+  
+  .paraclick {
+    margin-top: 0px;
+  }
+
+
+  .fuck {
+    display: flex;
+  }
+
+  .titlechange {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1 / 3;
+  }
+
+  .togglebutton:hover {
+    background-color: #09141d;
+    transition: 0.8s;
+
+
+  }
+
+  .toggleclose:hover {
+    background-color: #c55500;
+  }

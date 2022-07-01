@@ -57,14 +57,17 @@ class Project
     #[Groups(['agency', 'getUser', 'project'])]
     private $domain;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', nullable: true)]
+    #[Groups(['project', 'getUser'])]
     private $progress;
-    
+
     #[ORM\Column(type: 'string', length: 45)]
+    #[Groups(['project', 'getUser'])]
     private $productOwner;
 
-    #[ORM\Column(type: 'datetime')]
-    private $createdAt;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Groups(['project', 'getUser'])]
+    private $created_at;
 
     public function __construct()
     {
@@ -261,12 +264,12 @@ class Project
 
     public function getCreatedAt(): ?\DateTime
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt(\DateTime $created_at): self
     {
-        $this->createdAt = $createdAt;
+        $this->created_at = $created_at;
 
         return $this;
     }

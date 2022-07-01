@@ -7,16 +7,17 @@ $gris-clair: #f0f0f0;
 @use "./tableCards";
 @use "./cards";
 @use "./projectForm";
+@use "./search";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-    .disable-blur{
-        image-rendering: -webkit-optimize-contrast;
-    }
-  }
+	.disable-blur {
+		image-rendering: -webkit-optimize-contrast;
+	}
+}
 
 body {
   margin: 0;

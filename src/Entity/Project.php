@@ -33,7 +33,10 @@ class Project
     #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $description;
 
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Ressource::class)]
+    #[ORM\OneToMany(mappedBy: 'project',
+        targetEntity: Ressource::class,
+        cascade: ['persist', 'remove']
+    )]
     #[Groups(['agency', 'getUser', 'project', 'domain'])]
     private $ressource;
 

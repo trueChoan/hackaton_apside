@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Project;
+use App\Entity\Ressource;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,11 +26,26 @@ class ProjectController extends AbstractController
     #[Route('/new', name: 'app_project_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProjectRepository $projectRepository): Response
     {
-        $project = new Project();
+
+        $project= new Project();
+        // $ressources = [
+        //     $ressource1,
+        //     $ressource2,
+        //     $ressource3,
+        // ];
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
+    
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            for ($i = 0; $i < 3; $i++) {
+                $ressource = new Ressource();
+                $ressource->setName('Ressource');
+                $ressource->setLink($form->get('ressource_' . $i)->getData());
+                $ressource->setProject($project);
+                $project->addRessource($ressource);
+            }
             $project->setCreatedAt(new DateTime());
             $projectRepository->add($project, true);
 

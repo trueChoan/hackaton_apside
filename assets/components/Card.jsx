@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import "../styles/togglebutton.css"
+import "../styles/togglebutton.css";
 
 function giveColor(bgColor) {
 	switch (bgColor) {
@@ -44,9 +44,10 @@ const Card = ({
 	collab,
 	resume,
 	stack,
-	userFName,
-	userLName,
-	flag,
+	productOwner,
+	resource1,
+	resource2,
+	resource3,
 	domain,
 	progress,
 	creationDate,
@@ -67,7 +68,7 @@ const Card = ({
 
 	const toggle = () => {
 		setState(!state);
-	}
+	};
 
 	return (
 		<div className="Card" onClick={handleOpen}>
@@ -85,7 +86,7 @@ const Card = ({
 
 			<div className="location container">
 				<div className="title2">Location</div>
-				<p>{/* {flag} - {location} */}</p>
+				<p>{location}</p>
 			</div>
 
 			<div className="collab container">
@@ -178,7 +179,7 @@ const Card = ({
 										fontWeight: "bold",
 									}}
 								>
-									{userFName} {userLName}
+									{productOwner}
 								</b>
 							</div>
 							<div>
@@ -225,7 +226,18 @@ const Card = ({
 									{stack}
 								</b>
 							</div>
-							<div>autre truc</div>
+							<div>
+								Resource :{" "}
+								<b
+									style={{
+										fontWeight: "bold",
+									}}
+								>
+									<span>{resource1}</span>
+									<span>{resource2}</span>
+									<span>{resource3}</span>
+								</b>
+							</div>
 						</div>
 
 						<div
@@ -248,14 +260,19 @@ const Card = ({
 							>
 								<b>
 									Project Status :
-									{progress !== "100%" ? " In Progress" : "Complete"}
+									{progress !== "100%" ? " In Progress" : " Complete"}
 								</b>
 								<span style={{ color: "#e79759", fontWeight: "bold" }}>
 									{progress}
 								</span>
 							</p>
-							<button onClick={toggle} className={'togglebutton ' + (state ? 'toggleclose':'')}>
-						    <p className="paraclick">{state ? 'Project joined' : 'Join project !' }</p>
+							<button
+								onClick={toggle}
+								className={"togglebutton " + (state ? "toggleclose" : "")}
+							>
+								<p className="paraclick">
+									{state ? "Project joined" : "Join project !"}
+								</p>
 							</button>
 						</div>
 					</div>

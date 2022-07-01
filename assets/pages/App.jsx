@@ -8,8 +8,6 @@ import SearchResult from "../components/SearchResult";
 
 import Header from "../components/Header";
 import NavSelector from "../components/NavSelector";
-// import SearchBar from "../components/Searchbar";
-// import TableCards from "../components/TableCards";
 
 const App = () => {
 	const [projects, setProjects] = useState([]);
@@ -63,15 +61,16 @@ const App = () => {
 								name={el.name}
 								resume={el.description}
 								location={el.agency[0].name}
-								userFName={el.user[0].firstname}
-								userLName={el.user[0].lastname}
+								productOwner={el.productOwner}
 								collab={Math.floor(10 + Math.random() * (50 - 1))}
 								stack={el.techStack.techno}
 								bgColor={el.domain.color}
 								domain={el.domain.name}
-								// flag={el.user[0].flag}
-								// progress={el.progress}
-								// creationDate={el.created_at.slice(0, 10)}
+								resource1={el.ressource[0]}
+								resource2={el.ressource[1]}
+								resource3={el.ressource[2]}
+								progress={el.progress}
+								creationDate={el.created_at.slice(0, 10)}
 							/>
 						))}
 				</div>

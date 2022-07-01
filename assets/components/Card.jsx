@@ -271,7 +271,7 @@ const Card = ({
 								className={"togglebutton " + (state ? "toggleclose" : "")}
 							>
 								<p className="paraclick">
-									{state ? "Project joined" : "Join project !"}
+									{state ? "Pending Request" : "Join project !"}
 								</p>
 							</button>
 						</div>

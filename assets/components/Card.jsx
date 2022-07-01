@@ -77,9 +77,7 @@ const Card = ({
 
 			<div className="location container">
 				<div className="title2">Location</div>
-				<p>
-					{flag} - {location}
-				</p>
+				<p>{/* {flag} - {location} */}</p>
 			</div>
 
 			<div className="collab container">

@@ -13,18 +13,16 @@ class RessourceFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-        for ($i = 0; $i  < 40; $i ++) { 
-            $ressource = new Ressource();
-
-            $ressource->setName('Resource');
-            $ressource->setLink($faker->url());
-            $ressource->setProject($this->getReference('project_' . rand(0, 9)));
-
-            $manager->persist($ressource);
+        for ($i = 0; $i < count(ProjectFixtures::PROJECTS); $i++) {
+            
+            for ($j = 0; $j < 3; $j++) { 
+                $ressource = new Ressource();
+                $ressource->setName('Resource');
+                $ressource->setLink($faker->url());
+                $ressource->setProject($this->getReference('project_' . $i));
+                $manager->persist($ressource);
+            }
         }
-        
-        // $manager->persist($product);
-
         $manager->flush();
     }
 

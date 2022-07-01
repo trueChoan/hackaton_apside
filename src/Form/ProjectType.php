@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ProjectType extends AbstractType
 {
@@ -21,6 +22,15 @@ class ProjectType extends AbstractType
             ->add('progress', TextType::class)
             ->add('techStack', null, ['choice_label' => 'techno'])
             ->add('domain', null, ['choice_label' => 'name'])
+            ->add('ressource_0', TextType::class,[
+                'mapped' => false,
+            ])
+            ->add('ressource_1', TextType::class,[
+                'mapped' => false,
+            ])
+            ->add('ressource_2', TextType::class,[
+                'mapped' => false,
+            ])
         ;
     }
 

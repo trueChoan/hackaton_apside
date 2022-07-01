@@ -12,8 +12,8 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class ProjectFixtures extends Fixture implements DependentFixtureInterface
 {
     public const PROGRESS = [
-        ['progression' => 'In preparation'],
-        ['progression' => 'Project Done'],
+        ['progression' => "33%"],
+        ['progression' => '66%'],
         ['progression' => '0%'],
         ['progression' => '25%'],
         ['progression' => '50%'],

@@ -4,6 +4,8 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+import "../styles/togglebutton.css"
+
 function giveColor(bgColor) {
 	switch (bgColor) {
 		case "orange":
@@ -60,6 +62,12 @@ const Card = ({
 	const handleClose = () => {
 		setOpen(false);
 	};
+
+	const [state, setState] = useState(false);
+
+	const toggle = () => {
+		setState(!state);
+	}
 
 	return (
 		<div className="Card" onClick={handleOpen}>
@@ -159,7 +167,7 @@ const Card = ({
 								id="modal-modal-title"
 								variant="h3"
 								component="h2"
-								style={{ gridColumn: "1/3" }}
+								className="titlechange"
 							>
 								PROJECT : {name}
 							</Typography>
@@ -240,20 +248,14 @@ const Card = ({
 							>
 								<b>
 									Project Status :
-									{progress !== "100%" ? "In Progress" : "Complete"}
+									{progress !== "100%" ? " In Progress" : "Complete"}
 								</b>
 								<span style={{ color: "#e79759", fontWeight: "bold" }}>
 									{progress}
 								</span>
 							</p>
-							<button
-								style={{
-									margin: "auto",
-									padding: 10,
-									border: "2px solid orange",
-								}}
-							>
-								JOIN GROUP
+							<button onClick={toggle} className={'togglebutton ' + (state ? 'toggleclose':'')}>
+						    <p className="paraclick">{state ? 'Project joined' : 'Join project !' }</p>
 							</button>
 						</div>
 					</div>

@@ -26,7 +26,7 @@ function formlogin() {
       <p className="password">Your password</p><br></br>
       <input className="enterinfo2" type="password" placeholder="And the password here" {...register("Password", {required: true, pattern: /^\S+@\S+$/i})} />
       <Link to="/app">
-      <button className="buttonsubmit" type="submit"><p className="connected">Connexion</p></button>
+      <button className="buttonsubmit" type="submit"><p className="connected">Connection</p></button>
       </Link>
       <button className="buttonforgot"><p className="forgot">Forgot your password ?</p></button>
     </form>

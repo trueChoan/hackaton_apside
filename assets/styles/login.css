@@ -57,6 +57,11 @@ form {
     border-radius: 1px;
 }
 
+.buttonsubmit:hover {
+    background-color: #E77620;
+    transition: 0.5s;
+}
+
 .buttonforgot {
     margin-top: 6%;
     width: 282px;
@@ -65,6 +70,12 @@ form {
     border-style: none;
     border-radius: 1px;
 }
+
+.buttonforgot:hover {
+    background-color: #E77620;
+    transition: 0.5s;
+}
+
 
 .email {
     display: flex;

@@ -41,7 +41,7 @@ const Header = () => {
 				alt="logo Apside"
 				className="w-[22vh] h-auto disable-blur mt-3"
 			/>
-			<h1 className="text-[#183650] font-extrabold text-xl	">
+			<h1 className="text-[#183650] font-extrabold text-xl ml-12	">
 				IT Services and R&D consulting
 			</h1>
 			<div className="flex flex-row">
@@ -59,7 +59,7 @@ const Header = () => {
 					<Button onClick={handleOpen}>
 						<img
 							src={gearsolid}
-							className="w-[3.5vh] h-auto z-10 content-center items-center p-0 m-0"
+							className="w-[3.5vh] h-auto z-10 content-center items-center p-0 m-0 mb-3"
 						/>
 					</Button>
 					<Modal

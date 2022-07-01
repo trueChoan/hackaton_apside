@@ -125,7 +125,9 @@
     align-items: center;
     width: 100%;
     max-width: 50%;
+    margin-right: 48%;
     height: 40px;
+    margin-bottom: 3%;
     background-color: #E79759;
     border-radius: 2px;
   }
@@ -141,4 +143,9 @@
   .addproject:hover {
     background-color: #E77620;
     transition: 800ms;
+  }
+
+  .buttonsfake {
+    display: flex;
+    margin-right: 2%;
   }

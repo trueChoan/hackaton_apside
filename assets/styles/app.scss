@@ -7,16 +7,17 @@ $gris-clair: #f0f0f0;
 @use "./tableCards";
 @use "./cards";
 @use "./projectForm";
+@use "./search";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-    .disable-blur{
-        image-rendering: -webkit-optimize-contrast;
-    }
-  }
+	.disable-blur {
+		image-rendering: -webkit-optimize-contrast;
+	}
+}
 
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";

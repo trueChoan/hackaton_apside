@@ -60,7 +60,7 @@ class ProjectController extends AbstractController
                 ]));
 
             $mailer->send($email);
-            return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirect('http://localhost:8000/app');
         }
 
         return $this->renderForm('project/new.html.twig', [

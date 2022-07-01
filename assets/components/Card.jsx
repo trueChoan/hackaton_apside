@@ -233,9 +233,9 @@ const Card = ({
 										fontWeight: "bold",
 									}}
 								>
-									<span>{resource1}</span>
-									<span>{resource2}</span>
-									<span>{resource3}</span>
+									<p>{resource1}</p>
+									<p>{resource2}</p>
+									<p>{resource3}</p>
 								</b>
 							</div>
 						</div>

@@ -66,9 +66,9 @@ const App = () => {
 								stack={el.techStack.techno}
 								bgColor={el.domain.color}
 								domain={el.domain.name}
-								resource1={el.ressource[0]}
-								resource2={el.ressource[1]}
-								resource3={el.ressource[2]}
+								resource1={el.ressource[0].link}
+								resource2={el.ressource[1].link}
+								resource3={el.ressource[2].link}
 								progress={el.progress}
 								creationDate={el.created_at.slice(0, 10)}
 							/>

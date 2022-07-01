@@ -35,10 +35,10 @@ const TableCards = () => {
 						stack={el.techStack.techno}
 						userFName={el.user[0].firstname}
 						userLName={el.user[0].lastname}
-						flag={el.user[0].flag}
+						// flag={el.user[0].flag}
 						domain={el.domain.name}
-						progress={el.progress}
-						creationDate={el.created_at.slice(0, 10)}
+						// progress={el.progress}
+						// creationDate={el.created_at.slice(0, 10)}
 					/>
 				))}
 			</article>
